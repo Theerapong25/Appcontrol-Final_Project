@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Home Device Control App',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
+      home: const MainScaffold(),
     );
   }
 }

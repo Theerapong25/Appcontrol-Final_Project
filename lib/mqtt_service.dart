@@ -10,7 +10,7 @@ class MqttService {
 
   final Function(String device, bool isOn) onDeviceStatusChanged;
   final Function(double speed) onSpeedChanged;
-
+  final Function(String status) onStatusChanged;
   late MqttServerClient _client;
 
   MqttService({
@@ -19,6 +19,7 @@ class MqttService {
     required this.secret,
     required this.onDeviceStatusChanged,
     required this.onSpeedChanged,
+    required this.onStatusChanged,
   });
 
   Future<void> connect() async {
@@ -93,10 +94,10 @@ class MqttService {
     builder.addString(payload);
 
     _client.publishMessage(
-      '@msg/home/device_control',
-      MqttQos.atMostOnce,
-      builder.payload!,
-    );
+    '@msg/lab_ict/speed_control',
+    MqttQos.atMostOnce,
+    builder.payload!,
+  );
 
     print('📤 MQTT OUT: $payload');
   }
@@ -114,31 +115,25 @@ class MqttService {
     try {
 
       final decoded = json.decode(payload);
-
       if (decoded['data'] == null) return;
-
       final data = decoded['data'];
-
-      // 📊 รับค่า speed
+      
       if (data['speed'] != null) {
-
         double speed = (data['speed'] as num).toDouble();
-
         onSpeedChanged(speed);
       }
+      if (data['status'] != null) {
+  onStatusChanged(data['status']);   // ต้องมีบรรทัดนี้
+}
 
       // 🔔 device status
       _handleDevice(data, 'buzzer');
-
     } catch (e) {
       print('🚨 JSON error: $e');
     }
   }
-
   void _handleDevice(Map<String, dynamic> data, String device) {
-
     final value = data[device];
-
     if (value is int) {
       onDeviceStatusChanged(device, value == 1);
     }
