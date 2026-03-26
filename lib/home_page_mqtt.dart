@@ -42,7 +42,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       token: mobileToken,
       secret: mobileSecret,
 
-      /// SPEED CALLBACK
+     
       onSpeedChanged: (double newSpeed) {
         if (!mounted) return;
 
@@ -71,7 +71,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         });
       },
 
-      /// DEVICE CALLBACK
+    
       onDeviceStatusChanged: (device, isOn) {
 
         if (!mounted) return;
@@ -116,7 +116,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   }
 
-  /// CLEAR HISTORY
+  
   void _clearHistory() {
 
     setState(() {

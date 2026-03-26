@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
 
                   const SizedBox(height: 30),
 
-                  /// HEADER
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

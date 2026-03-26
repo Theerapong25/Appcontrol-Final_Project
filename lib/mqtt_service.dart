@@ -65,17 +65,15 @@ class MqttService {
 
     if (_client.connectionStatus?.state == MqttConnectionState.connected) {
 
-      // 📡 รับค่าความเร็วจาก ESP32
+      
       _client.subscribe('@msg/lab_ict/speed_data', MqttQos.atMostOnce);
-
-      // 📡 Shadow Sync
       _client.subscribe('@shadow/data/update', MqttQos.atMostOnce);
 
       _client.updates!.listen(_onMessage);
     }
   }
 
-  // publish control buzzer
+  
   void publishDevice(String device, bool value) {
 
     if (_client.connectionStatus?.state !=
@@ -123,7 +121,7 @@ class MqttService {
         onSpeedChanged(speed);
       }
       if (data['status'] != null) {
-  onStatusChanged(data['status']);   // ต้องมีบรรทัดนี้
+  onStatusChanged(data['status']);  
 }
 
       // 🔔 device status

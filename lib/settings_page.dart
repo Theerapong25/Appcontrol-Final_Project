@@ -118,7 +118,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icon(Icons.speed,color: Colors.orange),
                             SizedBox(width:10),
                             Text(
-                              "Overspeed Limit",
+                              "Overspeed Limit (Beta !!!)",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
